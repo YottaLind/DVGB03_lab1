@@ -11,9 +11,9 @@ void bubble_sort(int *a, int n)
 {
 	// TODO: bubble sort
 	int temp, i, j;
-	for (i = 0; i < size; i++)
+	for (i = 0; i < n; i++)
 	{
-		for (j = 0; j < size - 1; j++)
+		for (j = 0; j < n - 1; j++)
 		{
 			if (a[j] > a[j + 1])
 			{
@@ -42,5 +42,20 @@ bool linear_search(const int *a, int n, int v)
 
 bool binary_search(const int *a, int n, int v)
 {
+	quick_sort(a, n);
+
+	int low = 0, high = n-1, mid;
+	while(low <= high){
+		mid = (low+high)/2;
+		if(a[mid] < key){
+			low = mid + 1;
+		}else if(a[mid > key]){
+			high = mid-1;
+		}else
+		{
+			return true;
+		}
+		
+	}
 	return false; // TODO: binary search
 }
