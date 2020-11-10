@@ -37,6 +37,14 @@ void quick_sort(int *a, int n)
 
 bool linear_search(const int *a, int n, int v)
 {
+	quick_sort(a, n);
+	int i = 0;
+	while(a[i] <= v){
+		if(a[i] == v){
+			return true;
+		}
+		i++;
+	}
 	return false; // TODO: linear search
 }
 
@@ -47,9 +55,9 @@ bool binary_search(const int *a, int n, int v)
 	int low = 0, high = n-1, mid;
 	while(low <= high){
 		mid = (low+high)/2;
-		if(a[mid] < key){
+		if(a[mid] < v){
 			low = mid + 1;
-		}else if(a[mid > key]){
+		}else if(a[mid > v]){
 			high = mid-1;
 		}else
 		{
