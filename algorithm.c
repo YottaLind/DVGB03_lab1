@@ -29,7 +29,7 @@ void insertion_sort(int *a, int n)
 {
 	// TODO: insertion sort
 	int key, j;
-	for (size_t i = 1; i < n; i++)
+	for (int i = 1; i < n; i++)
 	{
 		key = a[i];
 		j = i - 1;
@@ -49,7 +49,11 @@ void quick_sort(int *a, int n)
 
 bool linear_search(const int *a, int n, int v)
 {
-	quick_sort(a, n);
+	/*
+	Pre:
+	List is sorted
+	*/
+	//quick_sort(a, n);
 	int i = 0;
 	while (a[i] <= v)
 	{
@@ -64,7 +68,12 @@ bool linear_search(const int *a, int n, int v)
 
 bool binary_search(const int *a, int n, int v)
 {
-	quick_sort(a, n);
+	/*
+	Pre:
+	List is sorted
+	*/
+	//quick_sort(a, n);
+
 
 	int low = 0, high = n - 1, mid;
 	while (low <= high)

@@ -14,7 +14,7 @@
 void benchmark(const algorithm_t a, const case_t c, result_t *buf, int n)
 {
 	clock_t exe_time;
-	double time_taken;
+	//double time_taken;
 
 	//Start timer
 	exe_time = clock();
@@ -22,5 +22,6 @@ void benchmark(const algorithm_t a, const case_t c, result_t *buf, int n)
 
 	//end timer
 	exe_time = clock() - exe_time;
-	time_taken = ((double)exe_time) / CLOCKS_PER_SEC;
+	//time_taken = ((double)exe_time) / CLOCKS_PER_SEC;
+
 }
