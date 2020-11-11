@@ -28,6 +28,18 @@ void bubble_sort(int *a, int n)
 void insertion_sort(int *a, int n)
 {
 	// TODO: insertion sort
+	int key, j;
+	for (size_t i = 1; i < n; i++)
+	{
+		key = a[i];
+		j = i - 1;
+		while (j >= 0 && a[i] > key)
+		{
+			a[j + 1] = a[j];
+			j--;
+		}
+		a[j + 1] = key;
+	}
 }
 
 void quick_sort(int *a, int n)
@@ -39,8 +51,10 @@ bool linear_search(const int *a, int n, int v)
 {
 	quick_sort(a, n);
 	int i = 0;
-	while(a[i] <= v){
-		if(a[i] == v){
+	while (a[i] <= v)
+	{
+		if (a[i] == v)
+		{
 			return true;
 		}
 		i++;
@@ -52,18 +66,22 @@ bool binary_search(const int *a, int n, int v)
 {
 	quick_sort(a, n);
 
-	int low = 0, high = n-1, mid;
-	while(low <= high){
-		mid = (low+high)/2;
-		if(a[mid] < v){
+	int low = 0, high = n - 1, mid;
+	while (low <= high)
+	{
+		mid = (low + high) / 2;
+		if (a[mid] < v)
+		{
 			low = mid + 1;
-		}else if(a[mid > v]){
-			high = mid-1;
-		}else
+		}
+		else if (a[mid > v])
+		{
+			high = mid - 1;
+		}
+		else
 		{
 			return true;
 		}
-		
 	}
 	return false; // TODO: binary search
 }
