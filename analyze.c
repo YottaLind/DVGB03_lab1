@@ -9,16 +9,21 @@
 
 Measurement benchmark(const Algorithm algorithm, const size_t iterations)
 {
-	clock_t exe_time;
-	//double time_taken;
+	clock_t clock_cycles;
+	double time_taken;
 
 	//Start timer
-	exe_time = clock();
+	clock_cycles = clock();
 	//algorithm goes here
-
+	for (int i = 0; i < 100000000; i++)
+	{
+		volatile int p = i;
+		i = p;
+	}
 	//end timer
-	exe_time = clock() - exe_time;
-	//time_taken = ((double)exe_time) / CLOCKS_PER_SEC;
+	clock_cycles = clock() - clock_cycles;
+	time_taken = ((double)clock_cycles) / CLOCKS_PER_SEC;
+	printf("TimeTaken: %f\n", time_taken);
 
 	return (Measurement) { .size = 0, .time = 0.0 };
 
