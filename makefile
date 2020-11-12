@@ -1,17 +1,20 @@
-.PHONY: clean all
+.PHONY: clean run
 
 COMPILER = gcc -O3 -march=native -Werror -Wall -pedantic-errors
 
 SOURCE=$(wildcard *.c)
 OBJECTS=$(SOURCE:.c=.o)
 
-all: program.out
 
-program.out: $(OBJECTS)
-	$(COMPILER) -fwhole-program -flto -lm -o program.out $^
+complexity-analysis: $(OBJECTS)
+	$(COMPILER) -fwhole-program -flto -lm -o $@ $^
+	strip $@
 
 %.o: %.c
 	$(COMPILER) -c -O3 -o $@ $<
 
 clean:
-	rm *.out *.o
+	rm complexity-analysis *.o
+
+run: complexity-analysis
+	./$^
