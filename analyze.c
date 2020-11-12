@@ -4,13 +4,6 @@
 //Needs to be included to mesure time taken by function
 #include <time.h>
 
-//
-// Private
-//
-
-//
-// Public
-//
 void benchmark(const algorithm_t a, const case_t c, result_t *buf, int n)
 {
 	clock_t exe_time;
