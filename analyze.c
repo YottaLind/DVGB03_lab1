@@ -6,7 +6,7 @@
 #include "algorithm.h"
 
 
-Measurement benchmark(const Algorithm algorithm, const size_t iterations)
+Result benchmark(const Algorithm algorithm, const unsigned int iterations)
 {
 	clock_t clock_cycles;
 	double time_taken;
@@ -24,7 +24,6 @@ Measurement benchmark(const Algorithm algorithm, const size_t iterations)
 	time_taken = ((double)clock_cycles) / CLOCKS_PER_SEC;
 	printf("TimeTaken: %f\n", time_taken);
 
-	return (Measurement) { .size = 0, .time = 0.0 };
 
 }
 

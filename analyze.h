@@ -3,6 +3,9 @@
 
 #include <stdint.h>
 
+
+#define Iteartions 6
+
 typedef enum Algorithmc
 {
 	BubbleSort,
@@ -20,6 +23,15 @@ typedef struct Measurement
 
 } Measurement;
 
-Measurement benchmark(const Algorithm algorithm, const unsigned int size);
+typedef struct Result
+{
+	Measurement best[Iteartions];
+	Measurement average[Iteartions];
+	Measurement worst[Iteartions];
+
+} Result;
+
+
+Result benchmark(const Algorithm algorithm, const unsigned int size);
 
 #endif
