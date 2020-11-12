@@ -5,9 +5,6 @@
 #include <stdbool.h>
 #include <stdio.h>
 
-//
-// Private
-//
 static void ui_invalid_input()
 {
 	printf("info> bad input\n");
@@ -46,13 +43,13 @@ static void ui_menu_options(const char *options[], int num_options)
 static void ui_menu()
 {
 	const char *options[] = {
-		"Menu",
-		"Exit\n",
+		"Menu\n",
 		"Bubble sort",
 		"Insertino sort",
 		"Quick sort",
 		"Linear serch",
 		"Binary search",
+		"\nExit",
 		// TODO: complete menu
 	};
 
@@ -81,7 +78,7 @@ void ui_run()
 			case '0':
 				show_menu = true;
 				break;
-			case '1':
+			case '9':
 				running = false;
 				break;
 			// Bubble sort
