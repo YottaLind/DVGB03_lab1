@@ -1,8 +1,7 @@
-#include <stdint.h>
 #include <stdlib.h>
 
 #include <time.h>
-
+#include <stdio.h>
 #include "analyze.h"
 #include "algorithm.h"
 
@@ -29,7 +28,7 @@ Measurement benchmark(const Algorithm algorithm, const size_t iterations)
 
 }
 
-void random(int array[], const size_t lenght)
+void random_generate(int array[], const size_t lenght)
 {
 	srand(1337);
 

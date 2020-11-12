@@ -15,11 +15,11 @@ typedef enum Algorithmc
 
 typedef struct Measurement
 {
-	const size_t size;
+	const unsigned int size;
 	const double time;
 
 } Measurement;
 
-Measurement benchmark(const Algorithm algorithm, const size_t size);
+Measurement benchmark(const Algorithm algorithm, const unsigned int size);
 
 #endif

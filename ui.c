@@ -4,6 +4,7 @@
 
 #include <stdbool.h>
 #include <stdio.h>
+#include <stdint.h>
 
 static void ui_invalid_input()
 {
@@ -64,7 +65,7 @@ static void ui_menu()
 void ui_run()
 {
 	bool running, show_menu;
-	result_t result[RESULT_ROWS];
+	//result_t result[RESULT_ROWS];
 	
 	show_menu = true;
 	running = true;
@@ -83,23 +84,23 @@ void ui_run()
 				break;
 			// Bubble sort
 			case '1':
-				benchmark(bubble_sort_t, best_t, result, RESULT_ROWS);
+				//benchmark(bubble_sort_t, best_t, result, RESULT_ROWS);
 				printf("Bubble\n");
 				break;
 			case '2':
-				benchmark(insertion_sort_t, best_t, result, RESULT_ROWS);
+				//benchmark(insertion_sort_t, best_t, result, RESULT_ROWS);
 				printf("Insertion\n");
 				break;
 			case '3':
-				benchmark(quick_sort_t, best_t, result, RESULT_ROWS);
+				//benchmark(quick_sort_t, best_t, result, RESULT_ROWS);
 				printf("Quick\n");
 				break;
 			case '4':
-				benchmark(linear_search_t, best_t, result, RESULT_ROWS);
+				//benchmark(linear_search_t, best_t, result, RESULT_ROWS);
 				printf("Linear\n");
 				break;
 			case '5':
-				benchmark(binary_search_t, best_t, result, RESULT_ROWS);
+				//benchmark(binary_search_t, best_t, result, RESULT_ROWS);
 				printf("Binary\n");
 				break;
 			// Invalid input
