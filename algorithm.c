@@ -1,96 +1,120 @@
 #include "algorithm.h"
 
-//
-// Private
-//
-
-//
-// Public
-//
-void bubble_sort(int *a, int n)
+void bubble_sort(int *array, int lenght)
 {
-	// TODO: bubble sort
-	int temp, i, j;
-	for (i = 0; i < n; i++)
+	for (int i = 0; i < lenght; i++)
 	{
-		for (j = 0; j < n - 1; j++)
+		for (int j = 0; j < lenght - 1; j++)
 		{
-			if (a[j] > a[j + 1])
+			if (array[j] > array[j + 1])
 			{
-				temp = a[j];
-				a[j] = a[j + 1];
-				a[j + 1] = temp;
+				const int temporary = array[j];
+
+				array[j] = array[j + 1];
+				array[j + 1] = temporary;
 			}
 		}
 	}
 }
 
-void insertion_sort(int *a, int n)
+void insertion_sort(int *array, int lenght)
 {
-	// TODO: insertion sort
-	int key, j;
-	for (int i = 1; i < n; i++)
+	for (int i = 1; i < lenght; i++)
 	{
-		key = a[i];
-		j = i - 1;
-		while (j >= 0 && a[i] > key)
+		const int key = array[i];
+		int j = i - 1;
+
+		while (j >= 0 && array[i] > key)
 		{
-			a[j + 1] = a[j];
+			array[j + 1] = array[j];
 			j--;
 		}
-		a[j + 1] = key;
+
+		array[j + 1] = key;
 	}
 }
 
-void quick_sort(int *a, int n)
-{
-	// TODO: quick sort
+
+
+static void swap(int* const first, int* const second) 
+{ 
+    const int temporary = *first;
+
+    *first = *second; 
+    *second = temporary; 
+} 
+
+static int partition (int array[], int low, int high) 
+{ 
+    int pivot = array[high];
+    int i = (low - 1);
+  
+    for (int j = low; j <= high- 1; j++) 
+    {
+        if (array[j] < pivot) 
+        { 
+            i++;
+
+			const int temporary = array[i];
+			array[i] = array[j];
+			array[j] = temporary;
+        } 
+    }
+
+    swap(&array[i + 1], &array[high]); 
+
+    return (i + 1); 
 }
 
-bool linear_search(const int *a, int n, int v)
+static void quicksort_backend(int array[], const int start, const int end) 
+{ 
+    if (start < end) 
+    {
+        const int index = partition(array, start, end); 
+
+        quicksort_backend(array, start, index - 1); 
+        quicksort_backend(array, index + 1, end); 
+    } 
+} 
+
+void quick_sort(int *array, int lenght)
 {
-	/*
-	Pre:
-	List is sorted
-	*/
-	//quick_sort(a, n);
-	int i = 0;
-	while (a[i] <= v)
+	quicksort_backend(array, 0, lenght - 1);
+}
+
+bool linear_search(const int *array, int lenght, int value)
+{
+	for (int i = 0; i < lenght; i++)
 	{
-		if (a[i] == v)
+		if (array[i] == value)
 		{
 			return true;
 		}
-		i++;
 	}
-	return false; // TODO: linear search
+	return false;
 }
 
-bool binary_search(const int *a, int n, int v)
+bool binary_search(const int *array, int lenght, int value)
 {
-	/*
-	Pre:
-	List is sorted
-	*/
-	//quick_sort(a, n);
+	int high = lenght - 1;
+	int low = 0;
 
-
-	int low = 0, high = n - 1, mid;
 	while (low <= high)
 	{
-		mid = (low + high) / 2;
-		if (a[mid] < v)
+		const int middle = (low + high) / 2;
+
+		if (array[middle] < value)
 		{
-			low = mid + 1;
+			low = middle + 1;
 		}
-		else if (a[mid > v])
+		else if (array[middle] > value)
 		{
-			high = mid - 1;
+			high = middle - 1;
 		}
 		else
 		{
 			return true;
 		}
 	}
-	return false; // TODO: binary search
+	return false;
 }
