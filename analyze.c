@@ -9,16 +9,19 @@
 
 void benchmark(const algorithm_t a, const case_t c, result_t *buf, int n)
 {
-	clock_t exe_time;
+	clock_t clock_cycles;
 	double time_taken;
 
 	//Start timer
-	exe_time = clock();
+	clock_cycles = clock();
 	//algorithm goes here
-
+	for (int i = 0; i < 100000000; i++)
+	{
+		volatile int p = i;
+		i = p;
+	}
 	//end timer
-	exe_time = clock() - exe_time;
-	time_taken = ((double)exe_time) / CLOCKS_PER_SEC;
+	clock_cycles = clock() - clock_cycles;
+	time_taken = ((double)clock_cycles) / CLOCKS_PER_SEC;
 	printf("TimeTaken: %f\n", time_taken);
-
 }
