@@ -85,6 +85,7 @@ void ui_run()
 			// Bubble sort
 			case '1':
 				//benchmark(bubble_sort_t, best_t, result, RESULT_ROWS);
+				benchmark(BubbleSort, 10);
 				printf("Bubble\n");
 				break;
 			case '2':

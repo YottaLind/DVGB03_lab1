@@ -6,7 +6,7 @@
 #include "algorithm.h"
 
 
-Result benchmark(const Algorithm algorithm, const unsigned int iterations)
+void benchmark(const Algorithm algorithm, const unsigned int iterations)
 {
 	clock_t clock_cycles;
 	double time_taken;

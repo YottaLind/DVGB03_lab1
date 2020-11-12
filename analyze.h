@@ -32,6 +32,6 @@ typedef struct Result
 } Result;
 
 
-Result benchmark(const Algorithm algorithm, const unsigned int size);
+void benchmark(const Algorithm algorithm, const unsigned int size);
 
 #endif
