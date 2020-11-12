@@ -1,12 +1,13 @@
 #ifndef ANALYZE_H
 #define ANALYZE_H
 
-#include <stdint.h>
+#include <stdlib.h>
 
+#define Variants 6
+#define Initial 256
+#define Iterations 7000
 
-#define Iteartions 6
-
-typedef enum Algorithmc
+typedef enum Algorithm
 {
 	BubbleSort,
 	InsertionSort,
@@ -18,20 +19,20 @@ typedef enum Algorithmc
 
 typedef struct Measurement
 {
-	const unsigned int size;
-	const double time;
+	double best;
+	double average;
+	double worst;
+
+	size_t size;
 
 } Measurement;
 
-typedef struct Result
+typedef struct Benchmark
 {
-	Measurement best[Iteartions];
-	Measurement average[Iteartions];
-	Measurement worst[Iteartions];
+	Measurement time[Variants];
 
-} Result;
+} Benchmark;
 
-
-void benchmark(const Algorithm algorithm, const unsigned int size);
+Benchmark benchmark(const Algorithm algorithm);
 
 #endif
