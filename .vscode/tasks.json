@@ -8,8 +8,11 @@
             "group": "build",
             "presentation": {
                 "reveal": "always",
-                "panel": "new"
-            }
+                "panel": "shared",
+                "clear": true,
+                "focus": true
+            },
+            "problemMatcher": []
         },
         {
             "label": "Compile and run",
@@ -18,8 +21,11 @@
             "group": "build",
             "presentation": {
                 "reveal": "always",
-                "panel": "new"
-            }
+                "panel": "shared",
+                "clear": true,
+                "focus": true
+            },
+            "problemMatcher": []
         }
     ]
 }
