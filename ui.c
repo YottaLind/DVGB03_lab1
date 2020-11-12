@@ -39,7 +39,7 @@ static void ui_menu_options(const char *options[], int num_options)
 	int i;
 
 	for (i=0; i<num_options; i++) {
-		printf("    %c) %s\n", 'a'+i, options[i]);
+		printf("    %c) %s\n", '0'+i, options[i]);
 	}
 }
 
@@ -48,7 +48,11 @@ static void ui_menu()
 	const char *options[] = {
 		"Menu",
 		"Exit\n",
-		"Bubble sort best case",
+		"Bubble sort",
+		"Insertino sort",
+		"Quick sort",
+		"Linear serch",
+		"Binary search",
 		// TODO: complete menu
 	};
 
@@ -74,16 +78,32 @@ void ui_run()
 		}
 		switch (ui_get_choice()) {
 			// House keeping
-			case 'a':
+			case '0':
 				show_menu = true;
 				break;
-			case 'b':
+			case '1':
 				running = false;
 				break;
 			// Bubble sort
-			case 'c':
+			case '2':
 				benchmark(bubble_sort_t, best_t, result, RESULT_ROWS);
-				printf("todo> implemenet BE + present results in FE\n");
+				printf("Bubble\n");
+				break;
+			case '3':
+				benchmark(insertion_sort_t, best_t, result, RESULT_ROWS);
+				printf("Insertion\n");
+				break;
+			case '4':
+				benchmark(quick_sort_t, best_t, result, RESULT_ROWS);
+				printf("Quick\n");
+				break;
+			case '5':
+				benchmark(linear_search_t, best_t, result, RESULT_ROWS);
+				printf("Linear\n");
+				break;
+			case '6':
+				benchmark(binary_search_t, best_t, result, RESULT_ROWS);
+				printf("Binary\n");
 				break;
 			// Invalid input
 			default:
