@@ -21,8 +21,13 @@ AlwaysBreakTemplateDeclarations: 'Yes'
 BinPackArguments: 'true'
 BinPackParameters: 'false'
 BreakBeforeBraces: Allman
+BreakBeforeTernaryOperators: 'false'
+BreakConstructorInitializers: AfterColon
+BreakInheritanceList: AfterColon
+ColumnLimit: 300
 CompactNamespaces: 'false'
-Cpp11BracedListStyle: 'false'
+ConstructorInitializerAllOnOneLineOrOnePerLine: 'true'
+Cpp11BracedListStyle: 'true'
 DerivePointerAlignment: 'false'
 FixNamespaceComments: 'false'
 IncludeBlocks: Regroup
@@ -46,6 +51,7 @@ SpaceBeforeCtorInitializerColon: 'true'
 SpaceBeforeInheritanceColon: 'true'
 SpaceBeforeParens: ControlStatements
 SpaceBeforeRangeBasedForLoopColon: 'true'
+SpacesBeforeTrailingComments: '4'
 TabWidth: '4'
 UseTab: Always
 
