@@ -3,8 +3,8 @@
 
 #include <stdlib.h>
 
-#define Variants 6
-#define Initial 256
+#define Variants   6
+#define Initial	   256
 #define Iterations 7000
 
 typedef enum Algorithm

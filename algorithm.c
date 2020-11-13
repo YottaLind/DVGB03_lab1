@@ -1,6 +1,6 @@
 #include "algorithm.h"
 
-void bubble_sort(int *array, int lenght)
+void bubble_sort(int* array, int lenght)
 {
 	for (int i = 0; i < lenght; i++)
 	{
@@ -17,7 +17,7 @@ void bubble_sort(int *array, int lenght)
 	}
 }
 
-void insertion_sort(int *array, int lenght)
+void insertion_sort(int* array, int lenght)
 {
 	for (int i = 1; i < lenght; i++)
 	{
@@ -34,55 +34,53 @@ void insertion_sort(int *array, int lenght)
 	}
 }
 
+static void swap(int* const first, int* const second)
+{
+	const int temporary = *first;
 
+	*first = *second;
+	*second = temporary;
+}
 
-static void swap(int* const first, int* const second) 
-{ 
-    const int temporary = *first;
+static int partition(int array[], int low, int high)
+{
+	int pivot = array[high];
+	int i = (low - 1);
 
-    *first = *second; 
-    *second = temporary; 
-} 
-
-static int partition (int array[], int low, int high) 
-{ 
-    int pivot = array[high];
-    int i = (low - 1);
-  
-    for (int j = low; j <= high- 1; j++) 
-    {
-        if (array[j] < pivot) 
-        { 
-            i++;
+	for (int j = low; j <= high - 1; j++)
+	{
+		if (array[j] < pivot)
+		{
+			i++;
 
 			const int temporary = array[i];
 			array[i] = array[j];
 			array[j] = temporary;
-        } 
-    }
+		}
+	}
 
-    swap(&array[i + 1], &array[high]); 
+	swap(&array[i + 1], &array[high]);
 
-    return (i + 1); 
+	return (i + 1);
 }
 
-static void quicksort_backend(int array[], const int start, const int end) 
-{ 
-    if (start < end) 
-    {
-        const int index = partition(array, start, end); 
+static void quicksort_backend(int array[], const int start, const int end)
+{
+	if (start < end)
+	{
+		const int index = partition(array, start, end);
 
-        quicksort_backend(array, start, index - 1); 
-        quicksort_backend(array, index + 1, end); 
-    } 
-} 
+		quicksort_backend(array, start, index - 1);
+		quicksort_backend(array, index + 1, end);
+	}
+}
 
-void quick_sort(int *array, int lenght)
+void quick_sort(int* array, int lenght)
 {
 	quicksort_backend(array, 0, lenght - 1);
 }
 
-bool linear_search(const int *array, int lenght, int value)
+bool linear_search(const int* array, int lenght, int value)
 {
 	for (int i = 0; i < lenght; i++)
 	{
@@ -94,7 +92,7 @@ bool linear_search(const int *array, int lenght, int value)
 	return false;
 }
 
-bool binary_search(const int *array, int lenght, int value)
+bool binary_search(const int* array, int lenght, int value)
 {
 	int high = lenght - 1;
 	int low = 0;

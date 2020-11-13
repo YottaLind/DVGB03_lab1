@@ -1,10 +1,11 @@
 #include "ui.h"
-#include "io.h"
+
 #include "analyze.h"
+#include "io.h"
 
 #include <stdbool.h>
-#include <stdio.h>
 #include <stdint.h>
+#include <stdio.h>
 
 static void ui_invalid_input()
 {
@@ -26,24 +27,26 @@ static char ui_get_choice()
 
 static void ui_line(char c, int n)
 {
-	while (n-- > 0) {
+	while (n-- > 0)
+	{
 		putchar(c);
 	}
 	putchar('\n');
 }
 
-static void ui_menu_options(const char *options[], int num_options)
+static void ui_menu_options(const char* options[], int num_options)
 {
 	int i;
 
-	for (i=0; i<num_options; i++) {
-		printf("    %c) %s\n", '0'+i, options[i]);
+	for (i = 0; i < num_options; i++)
+	{
+		printf("    %c) %s\n", '0' + i, options[i]);
 	}
 }
 
 static void ui_menu()
 {
-	const char *options[] = {
+	const char* options[] = {
 		"Menu\n",
 		"Bubble sort",
 		"Insertino sort",
@@ -55,7 +58,7 @@ static void ui_menu()
 	};
 
 	ui_line('=', MENU_WIDTH);
-	ui_menu_options(options, sizeof(options) / sizeof(char *));
+	ui_menu_options(options, sizeof(options) / sizeof(char*));
 	ui_line('-', MENU_WIDTH);
 }
 
@@ -66,15 +69,19 @@ void ui_run()
 {
 	bool running, show_menu;
 	//result_t result[RESULT_ROWS];
-	
+
 	show_menu = true;
 	running = true;
-	while (running) {
-		if (show_menu) {
+	while (running)
+	{
+		if (show_menu)
+		{
 			show_menu = false;
 			ui_menu();
 		}
-		switch (ui_get_choice()) {
+
+		switch (ui_get_choice())
+		{
 			// House keeping
 			case '0':
 				show_menu = true;
@@ -85,7 +92,7 @@ void ui_run()
 			// Bubble sort
 			case '1':
 				//benchmark(bubble_sort_t, best_t, result, RESULT_ROWS);
-				benchmark(BubbleSort, 10);
+				benchmark(BubbleSort);
 				printf("Bubble\n");
 				break;
 			case '2':

@@ -1,9 +1,11 @@
-#include <stdlib.h>
 
-#include <time.h>
-#include <stdio.h>
 #include "analyze.h"
+
 #include "algorithm.h"
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
 
 void populate(int array[], const size_t lenght)
 {
@@ -92,8 +94,8 @@ Benchmark benchmark(const Algorithm algorithm)
 		const size_t lenght = Initial * (2 * i);
 
 		result.time[i].size = lenght;
- 		result.time[i].average = measure(algorithm, lenght);
-		
+		result.time[i].average = measure(algorithm, lenght);
+
 		// TODO Add rest of data
 	}
 
