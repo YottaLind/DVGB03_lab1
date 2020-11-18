@@ -84,10 +84,7 @@ bool linear_search(const int* array, int lenght, int value)
 {
 	for (int i = 0; i < lenght; i++)
 	{
-		if (array[i] == value)
-		{
-			return true;
-		}
+		if (array[i] == value) { return true; }
 	}
 	return false;
 }
@@ -101,10 +98,7 @@ bool binary_search(const int* array, int lenght, int value)
 	{
 		const int middle = (low + high) / 2;
 
-		if (array[middle] < value)
-		{
-			low = middle + 1;
-		}
+		if (array[middle] < value) { low = middle + 1; }
 		else if (array[middle] > value)
 		{
 			high = middle - 1;
