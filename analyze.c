@@ -46,7 +46,7 @@ clock_t timing(const Algorithm algorithm, int array[], const size_t lenght)
 		case LinearSearch:
 		{
 			const clock_t start = clock();
-			//bubble_sort(array, lenght);
+			// bubble_sort(array, lenght);
 
 			return clock() - start;
 		}
@@ -56,13 +56,12 @@ clock_t timing(const Algorithm algorithm, int array[], const size_t lenght)
 			quick_sort(array, lenght);
 
 			const clock_t start = clock();
-			//bubble_sort(array, lenght, 0);
+			// bubble_sort(array, lenght, 0);
 
 			return clock() - start;
 		}
 
-		default:
-			return 0;
+		default: return 0;
 	}
 }
 

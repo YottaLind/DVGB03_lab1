@@ -2,6 +2,5 @@
 
 int main()
 {
-	ui_run();
-	return 0;
+	terminal();
 }

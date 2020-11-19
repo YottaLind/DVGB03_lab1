@@ -7,116 +7,92 @@
 #include <stdint.h>
 #include <stdio.h>
 
-static void ui_invalid_input()
+static char choice()
 {
-	printf("info> bad input\n");
+	printf("\n> ");
+	return input();
 }
 
-static void ui_exit()
-{
-	printf("info> bye\n");
-}
-
-static char ui_get_choice()
-{
-	char buf[3];
-
-	printf("input> ");
-	return read_line(buf, 3) ? buf[0] : 0;
-}
-
-static void ui_line(char c, int n)
+/*static void ui_line(char c, int n)
 {
 	while (n-- > 0)
 	{
 		putchar(c);
 	}
 	putchar('\n');
-}
+}*/
 
-static void ui_menu_options(const char* options[], int num_options)
+static void options(const char* labels[], size_t count)
 {
-	int i;
-
-	for (i = 0; i < num_options; i++)
+	for (size_t index = 0; index < count; index++)
 	{
-		printf("    %c) %s\n", '0' + i, options[i]);
+		printf("\n %lu) %s", index, labels[index]);
 	}
 }
 
-static void ui_menu()
+static void menu()
 {
-	const char* options[] = {
-		"Menu\n",
-		"Bubble sort",
-		"Insertino sort",
-		"Quick sort",
-		"Linear serch",
-		"Binary search\n",
-		"Exit",
-		// TODO: complete menu
-	};
+	const char* labels[] = {"Exit\n", "Bubble sort", "Insertino sort", "Quick sort", "Linear serch", "Binary search\n"};
 
-	ui_line('=', MENU_WIDTH);
-	ui_menu_options(options, sizeof(options) / sizeof(char*));
-	ui_line('-', MENU_WIDTH);
+	// ui_line('=', MENU_WIDTH);
+	options(labels, sizeof(labels) / sizeof(char*));
+	// ui_line('-', MENU_WIDTH);
 }
 
-//
-// Public
-//
-void ui_run()
+void terminal()
 {
-	bool running, show_menu;
-	//result_t result[RESULT_ROWS];
+	menu();
 
-	show_menu = true;
-	running = true;
-	while (running)
+	while (true)
 	{
-		if (show_menu)
+		switch (choice())
 		{
-			show_menu = false;
-			ui_menu();
-		}
-
-		switch (ui_get_choice())
-		{
-			// House keeping
 			case '0':
-				show_menu = true;
-				break;
-			case '6':
-				running = false;
-				break;
-			// Bubble sort
+			{
+				return;
+			}
+
 			case '1':
-				//benchmark(bubble_sort_t, best_t, result, RESULT_ROWS);
+			{
+				// benchmark(bubble_sort_t, best_t, result, RESULT_ROWS);
+				puts("Calculating...");
 				benchmark(BubbleSort);
-				printf("Bubble\n");
 				break;
+			}
+
 			case '2':
-				//benchmark(insertion_sort_t, best_t, result, RESULT_ROWS);
-				printf("Insertion\n");
+			{
+				// benchmark(insertion_sort_t, best_t, result, RESULT_ROWS);
+				puts("Calculating...");
 				break;
+			}
+
 			case '3':
-				//benchmark(quick_sort_t, best_t, result, RESULT_ROWS);
-				printf("Quick\n");
+			{
+				// benchmark(quick_sort_t, best_t, result, RESULT_ROWS);
+				puts("Calculating...");
 				break;
+			}
+
 			case '4':
-				//benchmark(linear_search_t, best_t, result, RESULT_ROWS);
-				printf("Linear\n");
+			{
+				// benchmark(linear_search_t, best_t, result, RESULT_ROWS);
+				puts("Calculating...");
 				break;
+			}
+
 			case '5':
-				//benchmark(binary_search_t, best_t, result, RESULT_ROWS);
-				printf("Binary\n");
+			{
+				// benchmark(binary_search_t, best_t, result, RESULT_ROWS);
+				puts("Calculating...");
 				break;
-			// Invalid input
+			}
+
 			default:
-				show_menu = false;
-				ui_invalid_input();
+			{
+				menu();
 				break;
+			}
 		}
 	}
-	ui_exit();
 }
