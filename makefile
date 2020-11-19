@@ -11,7 +11,7 @@ complexity-analysis: $(OBJECTS)
 	strip $@
 
 %.o: %.c
-	$(COMPILER) -c -O3 -o $@ $<
+	$(COMPILER) -c -o $@ $<
 
 clean:
 	rm complexity-analysis *.o
