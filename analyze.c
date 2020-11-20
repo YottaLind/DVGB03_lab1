@@ -87,15 +87,18 @@ Benchmark benchmark(const Algorithm algorithm)
 	srand(1234);
 
 	Benchmark result;
+	result.algorithm = algorithm;
+
+	size_t lenght = Initial;
 
 	for (int i = 0; i < Variants; i++)
 	{
-		const size_t lenght = Initial * (2 * i);
+		result.measurement[i].size = lenght;
+		result.measurement[i].average = measure(algorithm, lenght);
+		// result.time[i].best = measure(algorithm, lenght);
+		// result.time[i].worst = measure(algorithm, lenght);
 
-		result.time[i].size = lenght;
-		result.time[i].average = measure(algorithm, lenght);
-
-		// TODO Add rest of data
+		lenght *= 2;
 	}
 
 	return result;

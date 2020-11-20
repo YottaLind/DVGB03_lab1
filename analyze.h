@@ -5,7 +5,7 @@
 
 #define Variants   6
 #define Initial	   256
-#define Iterations 7000
+#define Iterations 7
 
 typedef enum Algorithm
 {
@@ -29,7 +29,8 @@ typedef struct Measurement
 
 typedef struct Benchmark
 {
-	Measurement time[Variants];
+	Measurement measurement[Variants];
+	Algorithm algorithm;
 
 } Benchmark;
 

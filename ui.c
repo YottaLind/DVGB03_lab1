@@ -22,7 +22,18 @@ static char choice()
 	putchar('\n');
 }*/
 
-static void options(const char* labels[], size_t count)
+static void display(const Benchmark data)
+{
+	puts("Average:");
+	printf("Size\tTime T(s)\tT/(log(n))\n");
+
+	for (size_t index = 0; index < Variants; index++)
+	{
+		printf("%lu\t%lf\t\n", data.measurement[index].size, data.measurement[index].average);
+	}
+}
+
+static void options(const char* labels[], const size_t count)
 {
 	for (size_t index = 0; index < count; index++)
 	{
@@ -45,7 +56,8 @@ void terminal()
 
 	while (true)
 	{
-		switch (choice())
+		choice();
+		switch ('1')
 		{
 			case '0':
 			{
@@ -56,7 +68,8 @@ void terminal()
 			{
 				// benchmark(bubble_sort_t, best_t, result, RESULT_ROWS);
 				puts("Calculating...");
-				benchmark(BubbleSort);
+				Benchmark result = benchmark(BubbleSort);
+				display(result);
 				break;
 			}
 
