@@ -5,7 +5,7 @@
 char input()
 {
 	char result;
-	scanf("%c%*c", &result);
+	if (scanf("%c%*c", &result)) { };
 
 	return result;
 }
