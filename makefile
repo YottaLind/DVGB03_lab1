@@ -1,6 +1,6 @@
 .PHONY: clean run
 
-COMPILER = gcc -O3 -march=native -Werror -Wall -pedantic-errors
+COMPILER = gcc -O3 -march=native -Wall
 
 SOURCE=$(wildcard *.c)
 OBJECTS=$(SOURCE:.c=.o)
