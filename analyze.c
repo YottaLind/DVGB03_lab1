@@ -5,8 +5,8 @@
 #include "measure.h"
 
 #include <stdbool.h>
-#include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 
 Benchmark benchmark(const Algorithm algorithm)
 {
@@ -39,10 +39,19 @@ Benchmark benchmark(const Algorithm algorithm)
 
 			case LinearSearch:
 			{
+				/* Seed random number generator */
+				srand(clock());
+
+				result.measurement[i] = measureSearch(lenght, linear_search, forward, randomly, randomly, 0, rand(), -1);
 				break;
 			}
+
 			case BinarySearch:
 			{
+				/* Seed random number generator */
+				srand(clock());
+
+				result.measurement[i] = measureSearch(lenght, binary_search, forward, forward, forward, (255 / 2), rand(), rand());
 				break;
 			}
 		}
