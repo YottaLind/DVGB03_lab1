@@ -17,6 +17,13 @@ typedef enum Algorithm
 
 } Algorithm;
 
+typedef enum Mode
+{
+	Best,
+	Average,
+	Worst
+} Mode;
+
 typedef struct Measurement
 {
 	double best;
