@@ -66,25 +66,25 @@ Measurement measureSort(const size_t lenght, Sort algorithm, Initialize best, In
 
 	return result;
 }
-
+/*
 Measurement measureLinearsearch(const size_t lenght)
 {
-	/* Seed random number generator */
-	srand(clock());
+	/* Seed random number generator
+srand(clock());
 
-	Measurement result;
-	result.size = lenght;
+Measurement result;
+result.size = lenght;
 
-	result.best = computeSort(lenght, linear_search, best);
-	result.average = computeSort(lenght, linear_search, average);
-	result.worst = computeSort(lenght, linear_search, worst);
+result.best = computeSort(lenght, linear_search, best);
+result.average = computeSort(lenght, linear_search, average);
+result.worst = computeSort(lenght, linear_search, worst);
 
-	return result;
+return result;
 }
 
 Measurement measureBinarysearch(const size_t lenght)
 {
-	/* Seed random number generator */
+	/* Seed random number generator
 	srand(clock());
 
 	Measurement result;
@@ -96,8 +96,9 @@ Measurement measureBinarysearch(const size_t lenght)
 
 	return result;
 }
+*/
 
-void random(int array[], const size_t lenght)
+void randomly(int array[], const size_t lenght)
 {
 	for (int index = 0; index < lenght; index++)
 	{
