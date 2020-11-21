@@ -3,6 +3,7 @@
 #include "analyze.h"
 #include "io.h"
 
+#include <math.h>
 #include <stdbool.h>
 #include <stdint.h>
 #include <stdio.h>
@@ -22,15 +23,43 @@ static char choice()
 	putchar('\n');
 }*/
 
+static double TN(double time, size_t lenght)
+{
+	return time / lenght;
+}
+
+static double TlogN(double time, size_t lenght)
+{
+	return time / log10(lenght);
+}
+
+static double TNlogN(double time, size_t lenght)
+{
+	return time / (lenght * log10(lenght));
+}
+
+static double TN2(double time, size_t lenght)
+{
+	return time / (lenght * lenght);
+}
+
+static double TN3(double time, size_t lenght)
+{
+	return time / (lenght * lenght * lenght);
+}
+
+static void list()
+{
+	for (size_t index = 0; index < Variants; index++)
+	{
+		// printf("%lu\t%lf\t\n", data.measurement[index].size, data.measurement[index].average);
+	}
+}
+
 static void display(const Benchmark data)
 {
 	puts("Average:");
 	printf("Size\tTime T(s)\tT/(log(n))\n");
-
-	for (size_t index = 0; index < Variants; index++)
-	{
-		printf("%lu\t%lf\t\n", data.measurement[index].size, data.measurement[index].average);
-	}
 }
 
 static void options(const char* labels[], const size_t count)
