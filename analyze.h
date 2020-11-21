@@ -1,6 +1,7 @@
 #ifndef ANALYZE_H
 #define ANALYZE_H
 
+#include <stdbool.h>
 #include <stdlib.h>
 
 #define Variants   6
