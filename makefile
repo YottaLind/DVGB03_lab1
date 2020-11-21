@@ -2,8 +2,8 @@
 
 COMPILER = gcc -O3 -march=native -Wall
 
-SOURCE=$(wildcard *.c)
-OBJECTS=$(SOURCE:.c=.o)
+SOURCE = $(wildcard *.c)
+OBJECTS = $(SOURCE:.c=.o)
 
 
 complexity-analysis: $(OBJECTS)
