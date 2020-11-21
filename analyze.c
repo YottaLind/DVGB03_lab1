@@ -21,19 +21,19 @@ Benchmark benchmark(const Algorithm algorithm)
 		{
 			case BubbleSort:
 			{
-				result.measurement[i] = measureSort(lenght, bubble_sort, forward, random, random);
+				result.measurement[i] = measureSort(lenght, bubble_sort, forward, randomly, randomly);
 				break;
 			}
 
 			case InsertionSort:
 			{
-				result.measurement[i] = measureSort(lenght, insertion_sort, forward, random, backward);
+				result.measurement[i] = measureSort(lenght, insertion_sort, forward, randomly, backward);
 				break;
 			}
 
 			case QuickSort:
 			{
-				result.measurement[i] = measureSort(lenght, quick_sort, random, random, forward);
+				result.measurement[i] = measureSort(lenght, quick_sort, randomly, randomly, forward);
 				break;
 			}
 
