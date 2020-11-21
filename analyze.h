@@ -5,7 +5,7 @@
 
 #define Variants   6
 #define Initial	   256
-#define Iterations 7
+#define Iterations 100
 
 typedef enum Algorithm
 {
@@ -16,13 +16,6 @@ typedef enum Algorithm
 	BinarySearch
 
 } Algorithm;
-
-typedef enum Mode
-{
-	Best,
-	Average,
-	Worst
-} Mode;
 
 typedef struct Measurement
 {

@@ -19,56 +19,46 @@ void average(int array[], const size_t lenght)
 	}
 }
 
-double measureSort(Sort algorithm, const size_t lenght, const Mode mode)
+static clock_t timingSort(Sort algorithm, int array[], const size_t lenght)
 {
-	int array[lenght];
+	const clock_t start = clock();
 
-	clock_t elapsed = 0;
+	algorithm(array, lenght);
 
-	for (size_t i = 0; i < Iterations; i++)
+	return clock() - start;
+}
+
+static Measurement measureQuicksort(const size_t lenght)
+{
+	Measurement result;
+	result.size = lenght;
+
+	/* Average */
 	{
-		switch (mode)
+		int array[lenght];
+		clock_t elapsed = 0;
+
+		for (size_t i = 0; i < Iterations; i++)
 		{
-			case Best:
+			/* Initiate array to random values */
+			for (int index = 0; index < lenght; index++)
 			{
-				break;
+				array[index] = rand();
 			}
 
-			case Average: average(array, lenght); break;
-
-			case Worst:
-			{
-				break;
-			}
+			elapsed += timingSort(quick_sort, array, lenght);
 		}
-
-		const clock_t start = clock();
-		algorithm(array, lenght);
-		elapsed += (clock() - start);
+		result.average = ((double)elapsed / Iterations) / CLOCKS_PER_SEC;
 	}
 
-	return ((double)elapsed / Iterations) / CLOCKS_PER_SEC;
-}
+	/* Best */
+	{}
 
-static Search selectSearch(const Algorithm algorithm)
-{
-	switch (algorithm)
+	/* Worst */
 	{
-		case LinearSearch: return linear_search;
-		case BinarySearch: return binary_search;
-		default: return NULL;
 	}
-}
 
-static Sort selectSort(const Algorithm algorithm)
-{
-	switch (algorithm)
-	{
-		case BubbleSort: return bubble_sort;
-		case InsertionSort: return insertion_sort;
-		case QuickSort: return quick_sort;
-		default: return NULL;
-	}
+	return result;
 }
 
 Benchmark benchmark(const Algorithm algorithm)
@@ -83,19 +73,19 @@ Benchmark benchmark(const Algorithm algorithm)
 
 	for (int i = 0; i < Variants; i++)
 	{
-		if (algorithm == LinearSearch || algorithm == BinarySearch)
+		switch (algorithm)
 		{
-			// result.measurement[i].average = measureSort(algorithm, lenght, Average);
-			// result.time[i].best = measure(algorithm, lenght);
-			// result.time[i].worst = measure(algorithm, lenght);
+			case BubbleSort:
+			case InsertionSort:
+			case QuickSort:
+			{
+				result.measurement[i] = measureQuicksort(lenght);
+				break;
+			}
+
+			case LinearSearch:
+			case BinarySearch: break;
 		}
-		else
-		{
-			result.measurement[i].average = measureSort(selectSort(algorithm), lenght, Average);
-			// result.time[i].best = measure(algorithm, lenght);
-			// result.time[i].worst = measure(algorithm, lenght);
-		}
-		result.measurement[i].size = lenght;
 
 		lenght *= 2;
 	}
