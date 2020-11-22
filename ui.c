@@ -86,7 +86,7 @@ static void display(const Benchmark data)
 	BigO_Text(data.bigO.best_bigO);
 	for (size_t index = 0; index < Variants; index++)
 	{
-		printf("%lu\t%lf\t|\t", data.measurement[index].size, data.measurement[index].worst);
+		printf("%lu\t%lf\t|\t", data.measurement[index].size, data.measurement[index].best);
 		//print the calculations here
 		double delta = bigO_calc[data.bigO.best_bigO - 1](data.measurement[index].best, data.measurement[index].size);
 		printf("%.10e\t", delta);
