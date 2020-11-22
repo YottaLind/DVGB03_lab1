@@ -1,6 +1,6 @@
 #include "algorithm.h"
 
-#include<stdbool.h>
+#include <stdbool.h>
 
 void bubble_sort(int* array, int lenght)
 {
@@ -18,10 +18,7 @@ void bubble_sort(int* array, int lenght)
 				array[j + 1] = temporary;
 			}
 		}
-		if(!switched)
-		{
-			return;
-		}
+		if (!switched) { return; }
 	}
 }
 
