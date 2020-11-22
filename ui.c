@@ -59,7 +59,7 @@ static double (*bigO_calc[7])(double time, size_t lenght);
 
 static void BigO_Text(O_Notation o)
 {
-	char bigO_text[][8] = {"T/1", "T/logN", "T/N/2", "T/N", "T/NlogN", "TN2", "TN3"};
+	char bigO_text[][8] = {"T/1", "T/logN", "T/N/2", "T/N", "T/NlogN", "TN^2", "TN^3"};
 
 	printf("\t\t\t\t%s\t\t\t%s\t\t\t%s\n", bigO_text[o - 1], bigO_text[o], bigO_text[o + 1]);
 }
@@ -75,7 +75,7 @@ static void display(const Benchmark data)
 	bigO_calc[6] = TN3;
 
 	// best
-	printf("\nBest:");
+	printf("\nBest");
 	BigO_Text(data.bigO.best_bigO);
 	for (size_t index = 0; index < Variants; index++)
 	{
@@ -91,7 +91,7 @@ static void display(const Benchmark data)
 	}
 
 	// average
-	printf("\nAverage:");
+	printf("\nAverage");
 	BigO_Text(data.bigO.average_bigO);
 	for (size_t index = 0; index < Variants; index++)
 	{
@@ -108,7 +108,7 @@ static void display(const Benchmark data)
 	}
 
 	// worst
-	printf("\nWorst:");
+	printf("\nWorst");
 	BigO_Text(data.bigO.worst_bigO);
 	for (size_t index = 0; index < Variants; index++)
 	{
