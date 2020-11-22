@@ -99,16 +99,16 @@ static void display(const Benchmark data)
 
 	//average
 	printf("\nAverage:");
-	BigO_Text(data.bigO.worst_bigO);
+	BigO_Text(data.bigO.average_bigO);
 	for (size_t index = 0; index < Variants; index++)
 	{
-		printf("%lu\t%lf\t|\t", data.measurement[index].size, data.measurement[index].worst);
+		printf("%lu\t%lf\t|\t", data.measurement[index].size, data.measurement[index].average);
 		//print the calculations here
-		double delta = bigO_calc[data.bigO.average_bigO - 1](data.measurement[index].worst, data.measurement[index].size);
+		double delta = bigO_calc[data.bigO.average_bigO - 1](data.measurement[index].average, data.measurement[index].size);
 		printf("%.10e\t", delta);
-		delta = bigO_calc[data.bigO.average_bigO](data.measurement[index].worst, data.measurement[index].size);
+		delta = bigO_calc[data.bigO.average_bigO](data.measurement[index].average, data.measurement[index].size);
 		printf("%.10e\t", delta);
-		delta = bigO_calc[data.bigO.average_bigO + 1](data.measurement[index].worst, data.measurement[index].size);
+		delta = bigO_calc[data.bigO.average_bigO + 1](data.measurement[index].average, data.measurement[index].size);
 		printf("%.10e\t", delta);
 
 		printf("\n");
@@ -116,16 +116,16 @@ static void display(const Benchmark data)
 
 	//worst
 	printf("\nWorst:");
-	BigO_Text(data.bigO.average_bigO);
+	BigO_Text(data.bigO.worst_bigO);
 	for (size_t index = 0; index < Variants; index++)
 	{
-		printf("%lu\t%lf\t|\t", data.measurement[index].size, data.measurement[index].average);
+		printf("%lu\t%lf\t|\t", data.measurement[index].size, data.measurement[index].worst);
 		//print the calculations here
-		double delta = bigO_calc[data.bigO.worst_bigO - 1](data.measurement[index].average, data.measurement[index].size);
+		double delta = bigO_calc[data.bigO.worst_bigO - 1](data.measurement[index].worst, data.measurement[index].size);
 		printf("%.10e\t", delta);
-		delta = bigO_calc[data.bigO.worst_bigO](data.measurement[index].average, data.measurement[index].size);
+		delta = bigO_calc[data.bigO.worst_bigO](data.measurement[index].worst, data.measurement[index].size);
 		printf("%.10e\t", delta);
-		delta = bigO_calc[data.bigO.worst_bigO + 1](data.measurement[index].average, data.measurement[index].size);
+		delta = bigO_calc[data.bigO.worst_bigO + 1](data.measurement[index].worst, data.measurement[index].size);
 		printf("%.10e\t", delta);
 		printf("\n");
 	}
