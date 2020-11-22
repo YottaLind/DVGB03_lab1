@@ -85,7 +85,7 @@ Benchmark benchmark(const Algorithm algorithm)
 
 		lenghtSort *= 2;
 		lenghtSearch *= 2;
-		printf("Iteration %d/%d done\n", i, Variants);
+		printf("Pass %d/%d done\n", i+1, Variants);
 	}
 
 	return result;
