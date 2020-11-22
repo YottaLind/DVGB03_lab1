@@ -141,7 +141,7 @@ static void options(const char *labels[], const size_t count)
 
 static void menu()
 {
-	const char *labels[] = {"Exit\n", "Bubble sort", "Insertino sort", "Quick sort", "Linear serch", "Binary search\n"};
+	const char *labels[] = {"Exit\n", "Bubble sort", "Insertion sort", "Quick sort", "Linear serch", "Binary search\n"};
 
 	// ui_line('=', MENU_WIDTH);
 	options(labels, sizeof(labels) / sizeof(char *));
