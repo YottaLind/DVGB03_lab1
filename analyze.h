@@ -6,11 +6,11 @@
 
 #define Variants 5
 
-#define InitialSort	  500
+#define InitialSort	  1000
 #define InitialSearch 10000
 
-#define IterationsSort	 10
-#define IterationsSearch 500
+#define IterationsSort	 15
+#define IterationsSearch 5000
 
 typedef enum Algorithm
 {
