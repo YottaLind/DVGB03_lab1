@@ -59,7 +59,7 @@ static double (*bigO_calc[7])(double time, size_t lenght);
 
 static void BigO_Text(O_Notation o)
 {
-	char bigO_text[][8] = {"T/1", "T/logN", "T/N/2", "T/N", "T/NlogN", "TN^2", "TN^3"};
+	char bigO_text[][8] = {"T/1", "T/logN", "T/(N/2)", "T/N", "T/NlogN", "T/N²", "T/N³"};
 
 	printf("Size(N)\tTime(T)\t\t\t%s\t\t\t%s\t\t\t%s\n", bigO_text[o - 1], bigO_text[o], bigO_text[o + 1]);
 }
