@@ -7,7 +7,7 @@ OBJECTS = $(SOURCE:.c=.o)
 
 
 complexity-analysis: $(OBJECTS)
-	$(COMPILER) -fwhole-program -flto -lm -o $@ $^
+	$(COMPILER) -fwhole-program -flto  -o $@ $^ -lm
 	strip $@
 
 %.o: %.c

@@ -18,6 +18,15 @@ typedef enum Algorithm
 
 } Algorithm;
 
+typedef enum O_Notation{
+	One_t = 1,
+	TlogN_t = 1,
+	TN_t = 2,
+	TNlogN_t = 3,
+	TN2_t = 4,
+	TN3_t = 4
+}O_Notation;
+
 typedef struct Measurement
 {
 	double best;
@@ -28,10 +37,19 @@ typedef struct Measurement
 
 } Measurement;
 
+typedef struct BigO
+{
+	O_Notation best_bigO;
+	O_Notation worst_bigO;
+	O_Notation average_bigO;
+}BigO;
+
+
 typedef struct Benchmark
 {
 	Measurement measurement[Variants];
 	Algorithm algorithm;
+	BigO bigO;
 
 } Benchmark;
 
