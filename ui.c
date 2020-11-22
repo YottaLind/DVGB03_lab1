@@ -61,7 +61,7 @@ static void BigO_Text(O_Notation o)
 {
 	char bigO_text[][8] = {"T/1", "T/logN", "T/(N/2)", "T/N", "T/NlogN", "T/N²", "T/N³"};
 
-	printf("\t\t\t\t%s\t\t\t%s\t\t\t%s\n", bigO_text[o - 1], bigO_text[o], bigO_text[o + 1]);
+	printf("Size(N)\tTime(T)\t\t\t%s\t\t\t%s\t\t\t%s\n", bigO_text[o - 1], bigO_text[o], bigO_text[o + 1]);
 }
 
 static void display(const Benchmark data)
@@ -75,7 +75,7 @@ static void display(const Benchmark data)
 	bigO_calc[6] = TN3;
 
 	// best
-	printf("\nBest");
+	printf("\nBest:\n");
 	BigO_Text(data.bigO.best_bigO);
 	for (size_t index = 0; index < Variants; index++)
 	{
@@ -91,7 +91,7 @@ static void display(const Benchmark data)
 	}
 
 	// average
-	printf("\nAverage");
+	printf("\nAverage:\n");
 	BigO_Text(data.bigO.average_bigO);
 	for (size_t index = 0; index < Variants; index++)
 	{
@@ -108,7 +108,7 @@ static void display(const Benchmark data)
 	}
 
 	// worst
-	printf("\nWorst");
+	printf("\nWorst:\n");
 	BigO_Text(data.bigO.worst_bigO);
 	for (size_t index = 0; index < Variants; index++)
 	{
@@ -158,9 +158,9 @@ void terminal()
 			case '1':
 			{
 				// benchmark(bubble_sort_t, best_t, result, RESULT_ROWS);
-				puts("Calculating...");
+				puts("Calculating...\n");
 				Benchmark result = benchmark(BubbleSort);
-				puts("BubbleSort: \n");
+				puts("BubbleSort:");
 				display(result);
 				break;
 			}
@@ -168,9 +168,9 @@ void terminal()
 			case '2':
 			{
 				// benchmark(insertion_sort_t, best_t, result, RESULT_ROWS);
-				puts("Calculating...");
+				puts("Calculating...\n");
 				Benchmark result = benchmark(InsertionSort);
-				puts("InsertionSort: \n");
+				puts("InsertionSort:");
 				display(result);
 				break;
 			}
@@ -178,9 +178,9 @@ void terminal()
 			case '3':
 			{
 				// benchmark(quick_sort_t, best_t, result, RESULT_ROWS);
-				puts("Calculating...");
+				puts("Calculating...\n");
 				Benchmark result = benchmark(QuickSort);
-				puts("QuickSort: \n");
+				puts("QuickSort:");
 				display(result);
 				break;
 			}
@@ -188,9 +188,9 @@ void terminal()
 			case '4':
 			{
 				// benchmark(linear_search_t, best_t, result, RESULT_ROWS);
-				puts("Calculating...");
+				puts("Calculating...\n");
 				Benchmark result = benchmark(LinearSearch);
-				puts("LinearSearch: \n");
+				puts("LinearSearch:");
 				display(result);
 				break;
 			}
@@ -198,9 +198,9 @@ void terminal()
 			case '5':
 			{
 				// benchmark(binary_search_t, best_t, result, RESULT_ROWS);
-				puts("Calculating...");
+				puts("Calculating...\n");
 				Benchmark result = benchmark(BinarySearch);
-				puts("BinarySearch: \n");
+				puts("BinarySearch:");
 				display(result);
 				break;
 			}
