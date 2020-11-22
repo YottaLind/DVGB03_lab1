@@ -54,7 +54,7 @@ Benchmark benchmark(const Algorithm algorithm)
 				/* Seed random number generator */
 				srand(clock());
 
-				result.measurement[i] = measureSearch(lenght, binary_search, forward, forward, forward, (255 / 2), rand(), rand());
+				result.measurement[i] = measureSearch(lenght, binary_search, forward, forward, forward, (lenght / 2), rand(), rand());
 				break;
 			}
 		}
