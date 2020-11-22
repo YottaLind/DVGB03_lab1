@@ -30,7 +30,8 @@ static double TlogN(double time, size_t lenght)
 	return time / log10(lenght);
 }
 
-static double TdN(double time, size_t lenght){
+static double TdN(double time, size_t lenght)
+{
 	return time / (lenght / 2);
 }
 
@@ -54,9 +55,10 @@ static double TN3(double time, size_t lenght)
 	return time / (lenght * lenght * lenght);
 }
 
-static double(*bigO_calc[7])(double time, size_t lenght);
+static double (*bigO_calc[7])(double time, size_t lenght);
 
-static void BigO_Text(O_Notation o){
+static void BigO_Text(O_Notation o)
+{
 	char bigO_text[][8] = {
 		"T/1",
 		"T/logN",
@@ -64,13 +66,12 @@ static void BigO_Text(O_Notation o){
 		"T/N",
 		"T/NlogN",
 		"TN2",
-		"TN3"
-	};
+		"TN3"};
 
-	printf("\t\t\t\t%s\t\t\t%s\t\t\t%s\n", bigO_text[o-1], bigO_text[o],bigO_text[o+1]);
+	printf("\t\t\t\t%s\t\t\t%s\t\t\t%s\n", bigO_text[o - 1], bigO_text[o], bigO_text[o + 1]);
 }
 
-static void list(const Benchmark data, Case c)
+static void display(const Benchmark data)
 {
 	bigO_calc[0] = One;
 	bigO_calc[1] = TlogN;
@@ -79,71 +80,55 @@ static void list(const Benchmark data, Case c)
 	bigO_calc[4] = TNlogN;
 	bigO_calc[5] = TN2;
 	bigO_calc[6] = TN3;
-	
-	switch (c)
+
+	//best
+	printf("\nBest:");
+	BigO_Text(data.bigO.best_bigO);
+	for (size_t index = 0; index < Variants; index++)
 	{
-	case best_t:
-		
-		BigO_Text(data.bigO.best_bigO);
-		for (size_t index = 0; index < Variants; index++)
-		{
-			printf("%lu\t%lf\t|\t", data.measurement[index].size, data.measurement[index].worst);
-			//print the calculations here
-			double delta = bigO_calc[data.bigO.best_bigO - 1](data.measurement[index].best,data.measurement[index].size);
-			printf("%.10e\t", delta);
-			delta = bigO_calc[data.bigO.best_bigO](data.measurement[index].best,data.measurement[index].size);
-			printf("%.10e\t", delta);
-			delta = bigO_calc[data.bigO.best_bigO + 1](data.measurement[index].best,data.measurement[index].size);
-			printf("%.10e\t", delta);
-			printf("\n");
-		}
-		break;
-	case worst_t:
-		BigO_Text(data.bigO.worst_bigO);
-		for (size_t index = 0; index < Variants; index++)
-		{
-			printf("%lu\t%lf\t|\t", data.measurement[index].size, data.measurement[index].worst);
-			//print the calculations here
-			double delta = bigO_calc[data.bigO.best_bigO - 1](data.measurement[index].worst,data.measurement[index].size);
-			printf("%.10e\t", delta);
-			delta = bigO_calc[data.bigO.best_bigO](data.measurement[index].worst,data.measurement[index].size);
-			printf("%.10e\t", delta);
-			delta = bigO_calc[data.bigO.best_bigO + 1](data.measurement[index].worst,data.measurement[index].size);
-			printf("%.10e\t", delta);
-
-			printf("\n");
-		}
-		break;
-	case average_t:
-		BigO_Text(data.bigO.average_bigO);
-		for (size_t index = 0; index < Variants; index++)
-		{
-			printf("%lu\t%lf\t|\t", data.measurement[index].size, data.measurement[index].average);
-			//print the calculations here
-			double delta = bigO_calc[data.bigO.best_bigO - 1](data.measurement[index].average,data.measurement[index].size);
-			printf("%.10e\t", delta);
-			delta = bigO_calc[data.bigO.best_bigO](data.measurement[index].average,data.measurement[index].size);
-			printf("%.10e\t", delta);
-			delta = bigO_calc[data.bigO.best_bigO + 1](data.measurement[index].average,data.measurement[index].size);
-			printf("%.10e\t", delta);
-			printf("\n");
-		}
-		break;
-
-	default:
-		break;
+		printf("%lu\t%lf\t|\t", data.measurement[index].size, data.measurement[index].worst);
+		//print the calculations here
+		double delta = bigO_calc[data.bigO.best_bigO - 1](data.measurement[index].best, data.measurement[index].size);
+		printf("%.10e\t", delta);
+		delta = bigO_calc[data.bigO.best_bigO](data.measurement[index].best, data.measurement[index].size);
+		printf("%.10e\t", delta);
+		delta = bigO_calc[data.bigO.best_bigO + 1](data.measurement[index].best, data.measurement[index].size);
+		printf("%.10e\t", delta);
+		printf("\n");
 	}
-}
 
-static void display(const Benchmark data)
-{
-	puts("\nBest case:");
-	list(data, best_t);
-	puts("\nAverage case:");
-	list(data, average_t);
-	puts("\nWorst case:");
-	list(data, worst_t);
+	//average
+	printf("\nAverage:");
+	BigO_Text(data.bigO.worst_bigO);
+	for (size_t index = 0; index < Variants; index++)
+	{
+		printf("%lu\t%lf\t|\t", data.measurement[index].size, data.measurement[index].worst);
+		//print the calculations here
+		double delta = bigO_calc[data.bigO.average_bigO - 1](data.measurement[index].worst, data.measurement[index].size);
+		printf("%.10e\t", delta);
+		delta = bigO_calc[data.bigO.average_bigO](data.measurement[index].worst, data.measurement[index].size);
+		printf("%.10e\t", delta);
+		delta = bigO_calc[data.bigO.average_bigO + 1](data.measurement[index].worst, data.measurement[index].size);
+		printf("%.10e\t", delta);
 
+		printf("\n");
+	}
+
+	//worst
+	printf("\nWorst:");
+	BigO_Text(data.bigO.average_bigO);
+	for (size_t index = 0; index < Variants; index++)
+	{
+		printf("%lu\t%lf\t|\t", data.measurement[index].size, data.measurement[index].average);
+		//print the calculations here
+		double delta = bigO_calc[data.bigO.worst_bigO - 1](data.measurement[index].average, data.measurement[index].size);
+		printf("%.10e\t", delta);
+		delta = bigO_calc[data.bigO.worst_bigO](data.measurement[index].average, data.measurement[index].size);
+		printf("%.10e\t", delta);
+		delta = bigO_calc[data.bigO.worst_bigO + 1](data.measurement[index].average, data.measurement[index].size);
+		printf("%.10e\t", delta);
+		printf("\n");
+	}
 }
 
 static void options(const char *labels[], const size_t count)
