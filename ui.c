@@ -1,8 +1,5 @@
 #include "ui.h"
 
-#include "analyze.h"
-#include "io.h"
-
 #include <math.h>
 #include <stdbool.h>
 #include <stdint.h>
@@ -23,14 +20,19 @@ static char choice()
 	putchar('\n');
 }*/
 
-static double TN(double time, size_t lenght)
+static double One(double time, size_t lenght)
 {
-	return time / lenght;
+	return time / 1;
 }
 
 static double TlogN(double time, size_t lenght)
 {
 	return time / log10(lenght);
+}
+
+static double TN(double time, size_t lenght)
+{
+	return time / lenght;
 }
 
 static double TNlogN(double time, size_t lenght)
@@ -48,21 +50,46 @@ static double TN3(double time, size_t lenght)
 	return time / (lenght * lenght * lenght);
 }
 
-static void list()
+static void list(const Benchmark data, Case c)
 {
-	for (size_t index = 0; index < Variants; index++)
+	switch (c)
 	{
-		// printf("%lu\t%lf\t\n", data.measurement[index].size, data.measurement[index].average);
+	case worst_t:
+		for (size_t index = 0; index < Variants; index++)
+		{
+			printf("%lu\t%lf\t\n", data.measurement[index].size, data.measurement[index].worst);
+		}
+		break;
+	case best_t:
+		for (size_t index = 0; index < Variants; index++)
+		{
+			printf("%lu\t%lf\t\n", data.measurement[index].size, data.measurement[index].best);
+		}
+		break;
+	case average_t:
+		for (size_t index = 0; index < Variants; index++)
+		{
+			printf("%lu\t%lf\t\n", data.measurement[index].size, data.measurement[index].average);
+		}
+		break;
+
+	default:
+		break;
 	}
 }
 
 static void display(const Benchmark data)
 {
-	puts("Average:");
-	printf("Size\tTime T(s)\tT/(log(n))\n");
+	puts("\nBest case:");
+	list(data, best_t);
+	puts("\nWorst case:");
+	list(data, worst_t);
+	puts("\nAverage case:");
+	list(data, average_t);
+
 }
 
-static void options(const char* labels[], const size_t count)
+static void options(const char *labels[], const size_t count)
 {
 	for (size_t index = 0; index < count; index++)
 	{
@@ -72,10 +99,10 @@ static void options(const char* labels[], const size_t count)
 
 static void menu()
 {
-	const char* labels[] = {"Exit\n", "Bubble sort", "Insertino sort", "Quick sort", "Linear serch", "Binary search\n"};
+	const char *labels[] = {"Exit\n", "Bubble sort", "Insertino sort", "Quick sort", "Linear serch", "Binary search\n"};
 
 	// ui_line('=', MENU_WIDTH);
-	options(labels, sizeof(labels) / sizeof(char*));
+	options(labels, sizeof(labels) / sizeof(char *));
 	// ui_line('-', MENU_WIDTH);
 }
 
@@ -85,56 +112,58 @@ void terminal()
 
 	while (true)
 	{
-		choice();
-		switch ('1')
+
+		switch (choice())
 		{
-			case '0':
-			{
-				return;
-			}
+		case '0':
+		{
+			return;
+			break;
+		}
 
-			case '1':
-			{
-				// benchmark(bubble_sort_t, best_t, result, RESULT_ROWS);
-				puts("Calculating...");
-				Benchmark result = benchmark(BubbleSort);
-				display(result);
-				break;
-			}
+		case '1':
+		{
+			// benchmark(bubble_sort_t, best_t, result, RESULT_ROWS);
+			puts("Calculating...");
+			Benchmark result = benchmark(BubbleSort);
+			puts("BubbleSort: \n");
+			display(result);
+			break;
+		}
 
-			case '2':
-			{
-				// benchmark(insertion_sort_t, best_t, result, RESULT_ROWS);
-				puts("Calculating...");
-				break;
-			}
+		case '2':
+		{
+			// benchmark(insertion_sort_t, best_t, result, RESULT_ROWS);
+			puts("Calculating...");
+			break;
+		}
 
-			case '3':
-			{
-				// benchmark(quick_sort_t, best_t, result, RESULT_ROWS);
-				puts("Calculating...");
-				break;
-			}
+		case '3':
+		{
+			// benchmark(quick_sort_t, best_t, result, RESULT_ROWS);
+			puts("Calculating...");
+			break;
+		}
 
-			case '4':
-			{
-				// benchmark(linear_search_t, best_t, result, RESULT_ROWS);
-				puts("Calculating...");
-				break;
-			}
+		case '4':
+		{
+			// benchmark(linear_search_t, best_t, result, RESULT_ROWS);
+			puts("Calculating...");
+			break;
+		}
 
-			case '5':
-			{
-				// benchmark(binary_search_t, best_t, result, RESULT_ROWS);
-				puts("Calculating...");
-				break;
-			}
+		case '5':
+		{
+			// benchmark(binary_search_t, best_t, result, RESULT_ROWS);
+			puts("Calculating...");
+			break;
+		}
 
-			default:
-			{
-				menu();
-				break;
-			}
+		default:
+		{
+			menu();
+			break;
+		}
 		}
 	}
 }
