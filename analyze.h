@@ -21,10 +21,11 @@ typedef enum Algorithm
 typedef enum O_Notation{
 	One_t = 1,
 	TlogN_t = 1,
-	TN_t = 2,
-	TNlogN_t = 3,
-	TN2_t = 4,
-	TN3_t = 4
+	TdN_t = 2,
+	TN_t = 3,
+	TNlogN_t = 4,
+	TN2_t = 5,
+	TN3_t = 5
 }O_Notation;
 
 typedef struct Measurement

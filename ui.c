@@ -30,6 +30,10 @@ static double TlogN(double time, size_t lenght)
 	return time / log10(lenght);
 }
 
+static double TdN(double time, size_t lenght){
+	return time / (lenght / 2);
+}
+
 static double TN(double time, size_t lenght)
 {
 	return time / lenght;
@@ -50,29 +54,31 @@ static double TN3(double time, size_t lenght)
 	return time / (lenght * lenght * lenght);
 }
 
-static double(*bigO_calc[6])(double time, size_t lenght);
+static double(*bigO_calc[7])(double time, size_t lenght);
 
 static void BigO_Text(O_Notation o){
 	char bigO_text[][8] = {
 		"T/1",
 		"T/logN",
+		"T/N/2",
 		"T/N",
 		"T/NlogN",
 		"TN2",
 		"TN3"
 	};
 
-	printf("\t\t\t\t\t%s\t\t\t%s\t\t\t%s\n", bigO_text[o-1], bigO_text[o],bigO_text[o+1]);
+	printf("\t\t\t\t%s\t\t\t%s\t\t\t%s\n", bigO_text[o-1], bigO_text[o],bigO_text[o+1]);
 }
 
 static void list(const Benchmark data, Case c)
 {
 	bigO_calc[0] = One;
 	bigO_calc[1] = TlogN;
-	bigO_calc[2] = TN;
-	bigO_calc[3] = TNlogN;
-	bigO_calc[4] = TN2;
-	bigO_calc[5] = TN3;
+	bigO_calc[2] = TdN;
+	bigO_calc[3] = TN;
+	bigO_calc[4] = TNlogN;
+	bigO_calc[5] = TN2;
+	bigO_calc[6] = TN3;
 	
 	switch (c)
 	{
@@ -133,10 +139,10 @@ static void display(const Benchmark data)
 {
 	puts("\nBest case:");
 	list(data, best_t);
-	puts("\nWorst case:");
-	list(data, worst_t);
 	puts("\nAverage case:");
 	list(data, average_t);
+	puts("\nWorst case:");
+	list(data, worst_t);
 
 }
 
@@ -186,6 +192,9 @@ void terminal()
 		{
 			// benchmark(insertion_sort_t, best_t, result, RESULT_ROWS);
 			puts("Calculating...");
+			Benchmark result = benchmark(InsertionSort);
+			puts("InsertionSort: \n");
+			display(result);
 			break;
 		}
 
@@ -193,6 +202,9 @@ void terminal()
 		{
 			// benchmark(quick_sort_t, best_t, result, RESULT_ROWS);
 			puts("Calculating...");
+			Benchmark result = benchmark(QuickSort);
+			puts("QuickSort: \n");
+			display(result);
 			break;
 		}
 
@@ -200,6 +212,9 @@ void terminal()
 		{
 			// benchmark(linear_search_t, best_t, result, RESULT_ROWS);
 			puts("Calculating...");
+			Benchmark result = benchmark(LinearSearch);
+			puts("LinearSearch: \n");
+			display(result);
 			break;
 		}
 
@@ -207,6 +222,9 @@ void terminal()
 		{
 			// benchmark(binary_search_t, best_t, result, RESULT_ROWS);
 			puts("Calculating...");
+			Benchmark result = benchmark(BinarySearch);
+			puts("BinarySearch: \n");
+			display(result);
 			break;
 		}
 

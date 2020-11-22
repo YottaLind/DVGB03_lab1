@@ -60,7 +60,7 @@ Benchmark benchmark(const Algorithm algorithm)
 				result.measurement[i] = measureSearch(lenght, linear_search, forward, randomly, randomly, 0, rand(), -1);
 
 				result.bigO.best_bigO = One_t;
-				result.bigO.average_bigO = TN2_t;
+				result.bigO.average_bigO = TdN_t;
 				result.bigO.worst_bigO = TN_t;
 
 				break;
