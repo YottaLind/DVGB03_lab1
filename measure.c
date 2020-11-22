@@ -29,13 +29,13 @@ static double computeSort(const size_t lenght, Sort algorithm, Initialize initia
 	int array[lenght];
 	clock_t elapsed = 0;
 
-	for (size_t i = 0; i < Iterations; i++)
+	for (size_t i = 0; i < IterationsSort; i++)
 	{
 		initialize(array, lenght);
 
 		elapsed += timingSort(algorithm, array, lenght);
 	}
-	return ((double)elapsed / Iterations) / CLOCKS_PER_SEC;
+	return ((double)elapsed / IterationsSort) / CLOCKS_PER_SEC;
 }
 
 static double computeSearch(const size_t lenght, Search algorithm, Initialize initialize, const int value)
@@ -43,13 +43,13 @@ static double computeSearch(const size_t lenght, Search algorithm, Initialize in
 	int array[lenght];
 	clock_t elapsed = 0;
 
-	for (size_t i = 0; i < Iterations; i++)
+	for (size_t i = 0; i < IterationsSearch; i++)
 	{
 		initialize(array, lenght);
 
 		elapsed += timingSearch(algorithm, array, lenght, value);
 	}
-	return ((double)elapsed / Iterations) / CLOCKS_PER_SEC;
+	return ((double)elapsed / IterationsSearch) / CLOCKS_PER_SEC;
 }
 
 Measurement measureSort(const size_t lenght, Sort algorithm, Initialize best, Initialize average, Initialize worst)

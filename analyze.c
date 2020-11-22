@@ -13,7 +13,8 @@ Benchmark benchmark(const Algorithm algorithm)
 	Benchmark result;
 	result.algorithm = algorithm;
 
-	size_t lenght = Initial;
+	size_t lenghtSort = InitialSort;
+	size_t lenghtSearch = InitialSearch;
 
 	for (int i = 0; i < Variants; i++)
 	{
@@ -21,7 +22,7 @@ Benchmark benchmark(const Algorithm algorithm)
 		{
 			case BubbleSort:
 			{
-				result.measurement[i] = measureSort(lenght, bubble_sort, forward, randomly, randomly);
+				result.measurement[i] = measureSort(lenghtSort, bubble_sort, forward, randomly, randomly);
 
 				result.bigO.best_bigO = TN_t;
 				result.bigO.average_bigO = TN2_t;
@@ -32,7 +33,7 @@ Benchmark benchmark(const Algorithm algorithm)
 
 			case InsertionSort:
 			{
-				result.measurement[i] = measureSort(lenght, insertion_sort, forward, randomly, backward);
+				result.measurement[i] = measureSort(lenghtSort, insertion_sort, forward, randomly, backward);
 
 				result.bigO.best_bigO = TN_t;
 				result.bigO.average_bigO = TN2_t;
@@ -43,7 +44,7 @@ Benchmark benchmark(const Algorithm algorithm)
 
 			case QuickSort:
 			{
-				result.measurement[i] = measureSort(lenght, quick_sort, randomly, randomly, forward);
+				result.measurement[i] = measureSort(lenghtSort, quick_sort, randomly, randomly, forward);
 
 				result.bigO.best_bigO = TNlogN_t;
 				result.bigO.average_bigO = TNlogN_t;
@@ -57,7 +58,7 @@ Benchmark benchmark(const Algorithm algorithm)
 				/* Seed random number generator */
 				srand(clock());
 
-				result.measurement[i] = measureSearch(lenght, linear_search, forward, randomly, randomly, 0, rand(), -1);
+				result.measurement[i] = measureSearch(lenghtSearch, linear_search, forward, randomly, randomly, 0, rand(), -1);
 
 				result.bigO.best_bigO = One_t;
 				result.bigO.average_bigO = TdN_t;
@@ -71,7 +72,7 @@ Benchmark benchmark(const Algorithm algorithm)
 				/* Seed random number generator */
 				srand(clock());
 
-				result.measurement[i] = measureSearch(lenght, binary_search, forward, forward, forward, (lenght / 2), rand(), rand());
+				result.measurement[i] = measureSearch(lenghtSearch, binary_search, forward, forward, forward, (lenghtSearch / 2), rand(), rand());
 
 				result.bigO.best_bigO = One_t;
 				result.bigO.average_bigO = TlogN_t;
@@ -81,7 +82,8 @@ Benchmark benchmark(const Algorithm algorithm)
 			}
 		}
 
-		lenght *= 2;
+		lenghtSort *= 2;
+		lenghtSearch *= 2;
 	}
 
 	return result;
