@@ -1,6 +1,6 @@
 .PHONY: clean run
 
-COMPILER = gcc -O3 -march=native -Wall
+COMPILER = gcc -O0 -march=native -Wall
 
 SOURCE = $(wildcard *.c)
 OBJECTS = $(SOURCE:.c=.o)
