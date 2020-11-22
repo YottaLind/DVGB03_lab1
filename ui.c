@@ -59,14 +59,7 @@ static double (*bigO_calc[7])(double time, size_t lenght);
 
 static void BigO_Text(O_Notation o)
 {
-	char bigO_text[][8] = {
-		"T/1",
-		"T/logN",
-		"T/N/2",
-		"T/N",
-		"T/NlogN",
-		"TN2",
-		"TN3"};
+	char bigO_text[][8] = {"T/1", "T/logN", "T/N/2", "T/N", "T/NlogN", "TN2", "TN3"};
 
 	printf("\t\t\t\t%s\t\t\t%s\t\t\t%s\n", bigO_text[o - 1], bigO_text[o], bigO_text[o + 1]);
 }
@@ -81,13 +74,13 @@ static void display(const Benchmark data)
 	bigO_calc[5] = TN2;
 	bigO_calc[6] = TN3;
 
-	//best
+	// best
 	printf("\nBest:");
 	BigO_Text(data.bigO.best_bigO);
 	for (size_t index = 0; index < Variants; index++)
 	{
-		printf("%lu\t%lf\t|\t", data.measurement[index].size, data.measurement[index].best);
-		//print the calculations here
+		printf("%lu\t%.13lf\t|\t", data.measurement[index].size, data.measurement[index].best);
+		// print the calculations here
 		double delta = bigO_calc[data.bigO.best_bigO - 1](data.measurement[index].best, data.measurement[index].size);
 		printf("%.10e\t", delta);
 		delta = bigO_calc[data.bigO.best_bigO](data.measurement[index].best, data.measurement[index].size);
@@ -97,13 +90,13 @@ static void display(const Benchmark data)
 		printf("\n");
 	}
 
-	//average
+	// average
 	printf("\nAverage:");
 	BigO_Text(data.bigO.average_bigO);
 	for (size_t index = 0; index < Variants; index++)
 	{
-		printf("%lu\t%lf\t|\t", data.measurement[index].size, data.measurement[index].average);
-		//print the calculations here
+		printf("%lu\t%.13lf\t|\t", data.measurement[index].size, data.measurement[index].average);
+		// print the calculations here
 		double delta = bigO_calc[data.bigO.average_bigO - 1](data.measurement[index].average, data.measurement[index].size);
 		printf("%.10e\t", delta);
 		delta = bigO_calc[data.bigO.average_bigO](data.measurement[index].average, data.measurement[index].size);
@@ -114,13 +107,13 @@ static void display(const Benchmark data)
 		printf("\n");
 	}
 
-	//worst
+	// worst
 	printf("\nWorst:");
 	BigO_Text(data.bigO.worst_bigO);
 	for (size_t index = 0; index < Variants; index++)
 	{
-		printf("%lu\t%lf\t|\t", data.measurement[index].size, data.measurement[index].worst);
-		//print the calculations here
+		printf("%lu\t%.13lf\t|\t", data.measurement[index].size, data.measurement[index].worst);
+		// print the calculations here
 		double delta = bigO_calc[data.bigO.worst_bigO - 1](data.measurement[index].worst, data.measurement[index].size);
 		printf("%.10e\t", delta);
 		delta = bigO_calc[data.bigO.worst_bigO](data.measurement[index].worst, data.measurement[index].size);
@@ -131,7 +124,7 @@ static void display(const Benchmark data)
 	}
 }
 
-static void options(const char *labels[], const size_t count)
+static void options(const char* labels[], const size_t count)
 {
 	for (size_t index = 0; index < count; index++)
 	{
@@ -141,10 +134,10 @@ static void options(const char *labels[], const size_t count)
 
 static void menu()
 {
-	const char *labels[] = {"Exit\n", "Bubble sort", "Insertion sort", "Quick sort", "Linear serch", "Binary search\n"};
+	const char* labels[] = {"Exit\n", "Bubble sort", "Insertion sort", "Quick sort", "Linear serch", "Binary search\n"};
 
 	// ui_line('=', MENU_WIDTH);
-	options(labels, sizeof(labels) / sizeof(char *));
+	options(labels, sizeof(labels) / sizeof(char*));
 	// ui_line('-', MENU_WIDTH);
 }
 
@@ -154,70 +147,69 @@ void terminal()
 
 	while (true)
 	{
-
 		switch (choice())
 		{
-		case '0':
-		{
-			return;
-			break;
-		}
+			case '0':
+			{
+				return;
+				break;
+			}
 
-		case '1':
-		{
-			// benchmark(bubble_sort_t, best_t, result, RESULT_ROWS);
-			puts("Calculating...");
-			Benchmark result = benchmark(BubbleSort);
-			puts("BubbleSort: \n");
-			display(result);
-			break;
-		}
+			case '1':
+			{
+				// benchmark(bubble_sort_t, best_t, result, RESULT_ROWS);
+				puts("Calculating...");
+				Benchmark result = benchmark(BubbleSort);
+				puts("BubbleSort: \n");
+				display(result);
+				break;
+			}
 
-		case '2':
-		{
-			// benchmark(insertion_sort_t, best_t, result, RESULT_ROWS);
-			puts("Calculating...");
-			Benchmark result = benchmark(InsertionSort);
-			puts("InsertionSort: \n");
-			display(result);
-			break;
-		}
+			case '2':
+			{
+				// benchmark(insertion_sort_t, best_t, result, RESULT_ROWS);
+				puts("Calculating...");
+				Benchmark result = benchmark(InsertionSort);
+				puts("InsertionSort: \n");
+				display(result);
+				break;
+			}
 
-		case '3':
-		{
-			// benchmark(quick_sort_t, best_t, result, RESULT_ROWS);
-			puts("Calculating...");
-			Benchmark result = benchmark(QuickSort);
-			puts("QuickSort: \n");
-			display(result);
-			break;
-		}
+			case '3':
+			{
+				// benchmark(quick_sort_t, best_t, result, RESULT_ROWS);
+				puts("Calculating...");
+				Benchmark result = benchmark(QuickSort);
+				puts("QuickSort: \n");
+				display(result);
+				break;
+			}
 
-		case '4':
-		{
-			// benchmark(linear_search_t, best_t, result, RESULT_ROWS);
-			puts("Calculating...");
-			Benchmark result = benchmark(LinearSearch);
-			puts("LinearSearch: \n");
-			display(result);
-			break;
-		}
+			case '4':
+			{
+				// benchmark(linear_search_t, best_t, result, RESULT_ROWS);
+				puts("Calculating...");
+				Benchmark result = benchmark(LinearSearch);
+				puts("LinearSearch: \n");
+				display(result);
+				break;
+			}
 
-		case '5':
-		{
-			// benchmark(binary_search_t, best_t, result, RESULT_ROWS);
-			puts("Calculating...");
-			Benchmark result = benchmark(BinarySearch);
-			puts("BinarySearch: \n");
-			display(result);
-			break;
-		}
+			case '5':
+			{
+				// benchmark(binary_search_t, best_t, result, RESULT_ROWS);
+				puts("Calculating...");
+				Benchmark result = benchmark(BinarySearch);
+				puts("BinarySearch: \n");
+				display(result);
+				break;
+			}
 
-		default:
-		{
-			menu();
-			break;
-		}
+			default:
+			{
+				menu();
+				break;
+			}
 		}
 	}
 }
