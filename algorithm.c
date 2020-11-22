@@ -1,18 +1,26 @@
 #include "algorithm.h"
 
+#include<stdbool.h>
+
 void bubble_sort(int* array, int lenght)
 {
 	for (int i = 0; i < lenght; i++)
 	{
-		for (int j = 0; j < lenght - 1; j++)
+		bool switched = 0;
+		for (int j = 0; j < lenght - i - 1; j++)
 		{
 			if (array[j] > array[j + 1])
 			{
+				switched = true;
 				const int temporary = array[j];
 
 				array[j] = array[j + 1];
 				array[j + 1] = temporary;
 			}
+		}
+		if(!switched)
+		{
+			return;
 		}
 	}
 }

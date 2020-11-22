@@ -4,8 +4,8 @@
 #include <stdbool.h>
 #include <stdlib.h>
 
-#define Variants   6
-#define Initial	   256
+#define Variants   5
+#define Initial	   512
 #define Iterations 4
 
 typedef enum Algorithm
