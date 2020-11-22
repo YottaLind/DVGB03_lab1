@@ -22,7 +22,7 @@ Benchmark benchmark(const Algorithm algorithm)
 		{
 			case BubbleSort:
 			{
-				result.measurement[i] = measureSort(lenghtSort, bubble_sort, forward, randomly, randomly);
+				result.measurement[i] = measureSort(lenghtSort, bubble_sort, forward, randomly, backward);
 
 				result.bigO.best_bigO = TN_t;
 				result.bigO.average_bigO = TN2_t;
