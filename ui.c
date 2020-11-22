@@ -68,7 +68,11 @@ static void list(const Benchmark data, Case c)
 		{
 			printf("%lu\t%lf\t|\t", data.measurement[index].size, data.measurement[index].best);
 			//print the calculations here
-			double delta = bigO_calc[data.bigO.best_bigO](data.measurement->best,data.measurement->size);
+			double delta = bigO_calc[1](data.measurement[index].best,data.measurement[index].size);
+			printf("delta: %.10e", delta);
+			delta = bigO_calc[2](data.measurement[index].best,data.measurement[index].size);
+			printf("delta: %.10e", delta);
+			delta = bigO_calc[3](data.measurement[index].best,data.measurement[index].size);
 			printf("delta: %.10e", delta);
 			printf("\n");
 		}

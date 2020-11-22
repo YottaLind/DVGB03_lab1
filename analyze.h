@@ -6,7 +6,7 @@
 
 #define Variants   6
 #define Initial	   256
-#define Iterations 10
+#define Iterations 4
 
 typedef enum Algorithm
 {
