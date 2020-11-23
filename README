@@ -1,0 +1,9 @@
+
+Requirement:
+    make, gcc
+
+Compile:
+    Run 'make'
+
+Run:
+    Run 'make run' or './complexity-analysis'
