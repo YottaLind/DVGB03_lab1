@@ -1,13 +1,13 @@
 .PHONY: clean run
 
-COMPILER = gcc -O3 -march=native -Wall
+COMPILER = gcc -O3 -march=native -Werror -Wall
 
 SOURCE = $(wildcard *.c)
 OBJECTS = $(SOURCE:.c=.o)
 
 
 complexity-analysis: $(OBJECTS)
-	$(COMPILER) -fwhole-program -flto  -o $@ $^ -lm
+	$(COMPILER) -fwhole-program -flto -o $@ $^ -lm
 	strip $@
 
 %.o: %.c
