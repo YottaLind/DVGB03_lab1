@@ -150,7 +150,6 @@ void terminal()
 			case '0':
 			{
 				return;
-				break;
 			}
 
 			case '1':
