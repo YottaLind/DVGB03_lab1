@@ -4,7 +4,6 @@
 #include <stdbool.h>
 #include <stdlib.h>
 
-
 #define Variants 5
 
 #define InitialSort	  1000

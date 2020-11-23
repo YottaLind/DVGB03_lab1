@@ -74,7 +74,7 @@ static void display(const Benchmark data)
 	bigO_calc[5] = TN2;
 	bigO_calc[6] = TN3;
 
-	// best
+	/* Best */
 	printf("\nBest:\n");
 	BigO_Text(data.bigO.best_bigO);
 	for (size_t index = 0; index < Variants; index++)
@@ -90,7 +90,7 @@ static void display(const Benchmark data)
 		printf("\n");
 	}
 
-	// average
+	/* Average */
 	printf("\nAverage:\n");
 	BigO_Text(data.bigO.average_bigO);
 	for (size_t index = 0; index < Variants; index++)
@@ -107,7 +107,7 @@ static void display(const Benchmark data)
 		printf("\n");
 	}
 
-	// worst
+	/* Worst */
 	printf("\nWorst:\n");
 	BigO_Text(data.bigO.worst_bigO);
 	for (size_t index = 0; index < Variants; index++)
@@ -136,9 +136,7 @@ static void menu()
 {
 	const char* labels[] = {"Exit\n", "Bubble sort", "Insertion sort", "Quick sort", "Linear serch", "Binary search\n"};
 
-	// ui_line('=', MENU_WIDTH);
 	options(labels, sizeof(labels) / sizeof(char*));
-	// ui_line('-', MENU_WIDTH);
 }
 
 void terminal()
@@ -157,7 +155,6 @@ void terminal()
 
 			case '1':
 			{
-				// benchmark(bubble_sort_t, best_t, result, RESULT_ROWS);
 				puts("Calculating...\n");
 				Benchmark result = benchmark(BubbleSort);
 				puts("BubbleSort:");
@@ -167,7 +164,6 @@ void terminal()
 
 			case '2':
 			{
-				// benchmark(insertion_sort_t, best_t, result, RESULT_ROWS);
 				puts("Calculating...\n");
 				Benchmark result = benchmark(InsertionSort);
 				puts("InsertionSort:");
@@ -177,7 +173,6 @@ void terminal()
 
 			case '3':
 			{
-				// benchmark(quick_sort_t, best_t, result, RESULT_ROWS);
 				puts("Calculating...\n");
 				Benchmark result = benchmark(QuickSort);
 				puts("QuickSort:");
@@ -187,7 +182,6 @@ void terminal()
 
 			case '4':
 			{
-				// benchmark(linear_search_t, best_t, result, RESULT_ROWS);
 				puts("Calculating...\n");
 				Benchmark result = benchmark(LinearSearch);
 				puts("LinearSearch:");
@@ -197,7 +191,6 @@ void terminal()
 
 			case '5':
 			{
-				// benchmark(binary_search_t, best_t, result, RESULT_ROWS);
 				puts("Calculating...\n");
 				Benchmark result = benchmark(BinarySearch);
 				puts("BinarySearch:");
